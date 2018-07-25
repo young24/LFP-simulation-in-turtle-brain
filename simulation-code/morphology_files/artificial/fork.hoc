@@ -1,0 +1,45 @@
+//  Generated Mon March 14, 2016
+
+
+
+{create soma[1]}
+{create axon[3]}
+
+
+secResolution = 243*4 // 243 is the space constant, microns for each section
+r = 2 // radius of axon and soma
+
+{access soma[0]}
+
+soma {pt3dclear()
+	pt3dadd(0, 0, -3-secResolution, 6)
+	pt3dadd(0, 0, -2-secResolution, 14)
+	pt3dadd(0, 0, -1-secResolution, 6)
+  } // end of points list
+
+axon[2] {pt3dclear()
+	pt3dclear()
+    for j=0,1{
+      pt3dadd(0, 0, secResolution*(j-1), r) // (x,y,z,r)
+    }
+  } // end of points list
+
+// create dendrites
+for i=0,1{
+    axon[i]{
+    pt3dclear()
+    for j=0,1{
+        pt3dadd(secResolution*sin(PI/4+PI*i)*j,0,secResolution*cos(PI/4)*j, r)
+    }
+    }
+}
+
+
+
+{soma[0] connect axon[2](0), 1}
+for i=0,1{
+    {axon[2] connect axon[i](0), 1}  
+}
+
+
+

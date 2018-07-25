@@ -1,0 +1,62 @@
+//  Generated Wed Jul 08 13:31:06 CEST 2015
+
+{create soma[1]}
+{create dendrite[46]}
+
+
+{access soma[0]}
+
+soma {pt3dclear()
+	pt3dadd(0, 0, -1, 2)
+	pt3dadd(0, 0, -0.5, 6)
+	pt3dadd(0, 0, 0, 14)
+	pt3dadd(0, 0, 0.5, 6)
+	pt3dadd(0, 0, 1, 2)
+  } // end of points list
+
+// create dendrites
+for i=0,5{
+  dendrite[i]{
+    pt3dclear()
+    for j=0,1{
+      pt3dadd(0, 0, 10*(j+i)-61, 2) // (x,y,z,r)
+    }
+  }
+}
+
+for i=6,35{
+  dendrite[i]{
+    pt3dclear()
+    for j=0,1{
+      pt3dadd(0, 0, 10*(j+i)-59, 2) // (x,y,z,r)
+    }
+  }
+}
+
+for i=36,45{
+  dendrite[i]{
+    pt3dclear()
+    for j=0,1{
+      pt3dadd(10*(j+i-36), 0, -61, 2) // (x,y,z,r)
+    }
+  }
+}
+
+// connect dendrites and soma
+for i=0,4{
+  {dendrite[i] connect dendrite[i+1](0), 1}
+}
+{dendrite[5] connect soma[0](0), 1}
+
+
+for i=6,34{
+  {dendrite[i] connect dendrite[i+1](0), 1}
+}
+{soma[0] connect dendrite[6](0), 1}
+
+{dendrite[0] connect dendrite[36](0), 1}
+for i=36,44{
+  {dendrite[i] connect dendrite[i+1](0), 1}
+}
+
+

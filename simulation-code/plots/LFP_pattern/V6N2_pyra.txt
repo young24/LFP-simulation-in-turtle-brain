@@ -1,0 +1,3 @@
+numSyn = 3197
+zShift = 100
+soma_to_MEA = 100

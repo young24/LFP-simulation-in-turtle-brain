@@ -1,0 +1,58 @@
+#1 Experiment Background
+
+S1:
+Hello everyone, my name is wenbin. I'm now doing my bachalor 
+thesis project here for 4 months. Today I'm going to talk
+about the "simulation of spike-induced field in cortex"
+
+S2:
+These two pictures are from Mark's experiment. When inserting
+a synaptic input to the neuron, you can see that the closer 
+the dendrite to soma is, the bigger its amplitude is. So there's 
+a correspondence between neuronal morphology and LFP.
+
+S3,S4:
+The last slide is only for a single neuron. And in turtle’s
+cortex, when stimulating a single neuron to fire, 
+the action potential will propagate around and interacts with
+dendrites of other neurons. These neurons will receive the synaptic
+inputs from the interaction points. Finally, we can record the
+extracellular potential on MEA. Our current goal is to reproduce
+the experiment results by simulation. If the results fit well,
+that means our model is a good model and through this model
+we can understand the underlying mechanism of the entire process.
+
+S5: (explain more detail)
+How do we do the simulation?
+The first problem is how to make a biological neuron digital.
+We can dissect the neuron into many compartments. Each compartment
+is like a small circuit with capacitor, resistor and its power
+supply. The specific value of resistance, conductance and other properties
+are determined by the biophysical properties. Such as the radius and the type of neuron.
+Then we connect these compartments together to form a complete circuit. 
+Now we get a digital neuron.
+
+
+#3 Simulation results 
+S6:
+We tested how different z-pos of synaptic input affect the
+extracellular potential recorded on MEA.
+The above one is done by choosing dif z-pos of synaptic input
+(hold x,y same). We can see as the relative z-pos become
+larger, the extracellular potential increases. And notice that
+there's a porality change around 80 microns. Why? (Why does the 
+extracellular potential like this?)
+
+S7 (return current)
+Because the conservation of charge. So there must be 
+some return currents when there is a synaptic input.
+And among these return currents, soma's return current is the biggest one.
+So when the z-position is close to soma, the synaptic input
+current will dominate the contribution to extracellular potential
+on MEA, however, as the z-position of synaptic input goes up,
+the return current of soma will eventually dominate the 
+contribution to the extracellular potential. That's why
+there's a porality change and why the amplitude of extracellular potential
+change like that in the figure.
+
+

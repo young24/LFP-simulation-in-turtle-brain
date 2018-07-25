@@ -1,0 +1,48 @@
+//  Generated Mon March 14, 2016
+
+{create soma[1]}
+{create dendrite[240]}
+
+
+{access soma[0]}
+
+soma {pt3dclear()
+	pt3dadd(-1, 0, 0, 6)
+	pt3dadd(0, 0, 0, 14)
+	pt3dadd(1, 0, 0, 6)
+  } // end of points list
+
+// create dendrites
+numDirection = 8
+numSecForOneDend = 30 // 300 microns in total length, so it's 10 microns for each section
+secResolution = 10 // microns for each section
+for k=0,numDirection-1{ // for 8 directions
+  for i=0,numSecForOneDend-1{
+    dendrite[i+numSecForOneDend*k]{
+      pt3dclear()
+      for j=0,1{// for uniform radius, only draw the start and end point.
+        pt3dadd((secResolution*(i+j)+1)*sin(PI/4*k), (secResolution*(i+j)+1)*cos(PI/4*k), 0, 2) // (x,y,z,r)
+      }
+    }
+  }
+}
+
+
+// connection
+//connect dendrites
+for k=0,numDirection-1{ // for 8 directions
+  for i=1,numSecForOneDend-1{
+    {dendrite[numSecForOneDend*k+i-1] connect dendrite[numSecForOneDend*k+i](0), 1}
+  }
+  if(k<4){
+	{soma[0] connect dendrite[numSecForOneDend*k](0), 1}
+  }else{
+	{soma[0] connect dendrite[numSecForOneDend*k](0), 0}
+  }
+}
+
+
+
+
+
+
